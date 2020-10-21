@@ -1,4 +1,5 @@
-import requestMultipleUrls from '.';
+// import requestMultipleUrls from '.'; // GETS BUG TypeError: _1.default is not a function
+import { requestMultipleUrls } from '.';
 
 jest.mock('./')
 

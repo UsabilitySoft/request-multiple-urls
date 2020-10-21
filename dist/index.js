@@ -35,15 +35,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var node_fetch_1 = require("node-fetch");
+exports.requestMultipleUrls = void 0;
+var node_fetch_1 = __importDefault(require("node-fetch"));
 /**
 * @Method: Makes a fetch request from a given URL and returns the response in JSON format.
 * @Param {string} Any URL
 * @Return {Object[]} JSON response from single endpoint
 */
-var requestSingleUrl = function (url) { return __awaiter(void 0, void 0, void 0, function () {
-    var response, json, error_1;
+var requestSingleUrlAndMutate = function (url) { return __awaiter(void 0, void 0, void 0, function () {
+    var response, json, item, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -54,7 +58,8 @@ var requestSingleUrl = function (url) { return __awaiter(void 0, void 0, void 0,
                 return [4 /*yield*/, response.json()];
             case 2:
                 json = _a.sent();
-                return [2 /*return*/, json];
+                item = { url: url, response: json };
+                return [2 /*return*/, item];
             case 3:
                 error_1 = _a.sent();
                 console.log(error_1);
@@ -66,32 +71,23 @@ var requestSingleUrl = function (url) { return __awaiter(void 0, void 0, void 0,
 /**
 * @Method: Returns the contents of multiple URL endpoints in a JSON object given an array of URLs.
 * @Param {string[]} An array of URL endpoints
-* @Return {Object[]} JSON response with the contents of multiple URL endpoints
+* @Return {Object[]} JSON response with the contents of multiple URL endpoints along with their respective URL
 */
-// const requestMultipleUrls = async (urls: string[]) => { 
+// export const requestMultipleUrls = async (urls: string[]) => { // BUGs
+// export default async function requestMultipleUrls(urls: string[]){ 
+// OLD
+// export const requestMultipleUrls = async (urls: string[]) => { // BUGs
+//   return Promise.all(urls.map(url => requestSingleUrlAndMutate(url)))
+// }
+// working
 function requestMultipleUrls(urls) {
     return __awaiter(this, void 0, void 0, function () {
-        var json;
-        var _this = this;
         return __generator(this, function (_a) {
-            json = new Array;
-            urls.map(function (url) { return __awaiter(_this, void 0, void 0, function () {
-                var response, responseItem;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0: return [4 /*yield*/, requestSingleUrl(url)];
-                        case 1:
-                            response = _a.sent();
-                            responseItem = { url: url, response: response };
-                            json.push(responseItem);
-                            return [2 /*return*/];
-                    }
-                });
-            }); });
-            return [2 /*return*/, json];
+            // export default async function requestMultipleUrls(urls: string[]){ // gets TypeError: _1.default is not a function
+            return [2 /*return*/, Promise.all(urls.map(function (url) { return requestSingleUrlAndMutate(url); }))];
         });
     });
 }
-exports.default = requestMultipleUrls;
+exports.requestMultipleUrls = requestMultipleUrls;
 ;
 // export default requestMultipleUrls;
