@@ -29,9 +29,11 @@ requestMultipleUrls(urls).then(urlContent => {
 });
 ```
 ___
-## To test
+## To Test
 
-There are tests to check main function works correctly these should be elaborated on but in the interest of time...
+There are two simple tests to check that the main function works correctly these could/should be elaborated on but in the interest of time...
+
+`npm install`
 
 `npm run test`
 
