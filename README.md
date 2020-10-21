@@ -31,7 +31,7 @@ requestMultipleUrls(urls).then(urlContent => {
 ___
 ## To test
 
-There are tests to check main function works correctly:
+There are tests to check main function works correctly these should be elaborated on but in the interest of time...
 
 `npm run test`
 
