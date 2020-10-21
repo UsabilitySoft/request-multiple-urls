@@ -45,7 +45,7 @@ var mockUrls = [
 ];
 describe('requestMultipleUrls() using Promise', function () {
     it('Should load API response data', function () {
-        return _1.requestMultipleUrls(mockUrls)
+        return _1.default(mockUrls)
             .then(function (data) {
             console.log(data[0].url);
             expect(data).toBeDefined();
@@ -58,7 +58,7 @@ describe('requestMultipleUrls() using async/await', function () {
         var data;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, _1.requestMultipleUrls(mockUrls)];
+                case 0: return [4 /*yield*/, _1.default(mockUrls)];
                 case 1:
                     data = _a.sent();
                     expect(data).toBeDefined();

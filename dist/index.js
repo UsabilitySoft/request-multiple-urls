@@ -35,12 +35,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.requestMultipleUrls = void 0;
-var node_fetch_1 = __importDefault(require("node-fetch"));
+var node_fetch_1 = require("node-fetch");
 /**
 * @Method: Makes a fetch request from a given URL and returns the response in JSON format.
 * @Param {string} Any URL
@@ -72,23 +68,30 @@ var requestSingleUrl = function (url) { return __awaiter(void 0, void 0, void 0,
 * @Param {string[]} An array of URL endpoints
 * @Return {Object[]} JSON response with the contents of multiple URL endpoints
 */
-exports.requestMultipleUrls = function (urls) { return __awaiter(void 0, void 0, void 0, function () {
-    var json;
-    return __generator(this, function (_a) {
-        json = new Array;
-        urls.map(function (url) { return __awaiter(void 0, void 0, void 0, function () {
-            var response, responseItem;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, requestSingleUrl(url)];
-                    case 1:
-                        response = _a.sent();
-                        responseItem = { url: url, response: response };
-                        json.push(responseItem);
-                        return [2 /*return*/];
-                }
-            });
-        }); });
-        return [2 /*return*/, json];
+// const requestMultipleUrls = async (urls: string[]) => { 
+function requestMultipleUrls(urls) {
+    return __awaiter(this, void 0, void 0, function () {
+        var json;
+        var _this = this;
+        return __generator(this, function (_a) {
+            json = new Array;
+            urls.map(function (url) { return __awaiter(_this, void 0, void 0, function () {
+                var response, responseItem;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, requestSingleUrl(url)];
+                        case 1:
+                            response = _a.sent();
+                            responseItem = { url: url, response: response };
+                            json.push(responseItem);
+                            return [2 /*return*/];
+                    }
+                });
+            }); });
+            return [2 /*return*/, json];
+        });
     });
-}); };
+}
+exports.default = requestMultipleUrls;
+;
+// export default requestMultipleUrls;

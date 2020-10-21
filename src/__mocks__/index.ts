@@ -1,4 +1,4 @@
-import fs from 'fs'
+const fs = require('fs')
 
 interface IResponse {
   url: string;
@@ -15,7 +15,7 @@ export const requestMultipleUrls = (urls:string[]) => new Promise((resolve, reje
   const fileName = url.substring(lastSlash + 1)
   
   // Load JSON data from mock data file
-  fs.readFile(`./src/__mockData__/${fileName}`, 'utf8', (err, data) => {
+  fs.readFile(`./src/__mockData__/${fileName}`, 'utf8', (err:any, data:any) => {
     if (err) reject(err)
     
     // Parse the data as JSON and put response in the correct data structure

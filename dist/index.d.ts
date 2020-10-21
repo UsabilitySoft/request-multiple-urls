@@ -4,4 +4,4 @@ import IResponse from './response.interface';
 * @Param {string[]} An array of URL endpoints
 * @Return {Object[]} JSON response with the contents of multiple URL endpoints
 */
-export declare const requestMultipleUrls: (urls: string[]) => Promise<IResponse[]>;
+export default function requestMultipleUrls(urls: string[]): Promise<IResponse[]>;

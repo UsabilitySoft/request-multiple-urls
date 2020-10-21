@@ -1,4 +1,5 @@
-import { requestMultipleUrls } from '.';
+import requestMultipleUrls from '.';
+
 jest.mock('./')
 
 const mockUrls = [
@@ -10,7 +11,7 @@ const mockUrls = [
 describe('requestMultipleUrls() using Promise', () => {
   it('Should load API response data', () => {
     return requestMultipleUrls(mockUrls)
-    .then(data => {
+    .then((data:any) => {
       console.log(data[0].url)
       expect(data).toBeDefined()
       expect(data[0].url).toEqual(mockUrls[0])

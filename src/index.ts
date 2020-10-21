@@ -23,7 +23,8 @@ const requestSingleUrl = async (url: string) => {
 * @Param {string[]} An array of URL endpoints 
 * @Return {Object[]} JSON response with the contents of multiple URL endpoints
 */
-export const requestMultipleUrls = async (urls: string[]) => { 
+// const requestMultipleUrls = async (urls: string[]) => { 
+  export default async function requestMultipleUrls(urls: string[]){ 
   let json:IResponse[] = new Array;
   urls.map(async url => {
     let response = await requestSingleUrl(url);
@@ -32,3 +33,4 @@ export const requestMultipleUrls = async (urls: string[]) => {
   })
   return json;
 };
+// export default requestMultipleUrls;
